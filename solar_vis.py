@@ -14,7 +14,7 @@ header_font = "Arial-16"
 window_width = 900
 """Ширина окна"""
 
-window_height = 12
+window_height = 1200
 """Высота окна"""
 
 scale_factor = 1
@@ -68,7 +68,6 @@ if __name__ == "__main__":
 class Drawer:
     def __init__(self, screen):
         self.screen = screen
-
 
     def update(self, figures, ui):
         self.screen.fill((0, 0, 0))
