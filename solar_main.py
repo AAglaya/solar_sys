@@ -51,6 +51,7 @@ def start_execution():
 
 def pause_execution():
     global perform_execution
+    write_space_objects_data_to_file("stats.txt", space_objects)
     perform_execution = False
     write_space_objects_data_to_file('stats.txt', space_objects)
 
