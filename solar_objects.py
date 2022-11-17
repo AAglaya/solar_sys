@@ -38,6 +38,27 @@ class Star:
     color = "red"
     """Цвет звезды"""
 
+    def __init__(self, m, x, y, Vx, Vy, R, color):
+        """ Конструктор класса Star
+        Args:
+        type - Признак объекта звезды
+        m - Масса звезды
+        x - Координата по оси **x**
+        y - Координата по оси **y**
+        Vx - Скорость по оси **x**
+        Vy - Скорость по оси **y**
+        R - Радиус звезды
+        color - Цвет звезды
+        """
+        self.type = "star"
+        self.m = m
+        self.x = x
+        self.y = y
+        self.Vx = Vx
+        self.Vy = Vy
+        self.R = R
+        self.color = color
+
 
 class Planet:
     """Тип данных, описывающий планету.
@@ -74,3 +95,23 @@ class Planet:
 
     color = "green"
     """Цвет планеты"""
+
+    def __init__(self, m, x, y, Vx, Vy, R, color):
+        """ Конструктор класса Star
+        Args:
+        type - Признак объекта планеты
+        m - Масса планеты
+        x - Координата по оси **x**
+        y - Координата по оси **y**
+        Vx - Скорость по оси **x**
+        Vy - Скорость по оси **y**
+        R - Радиус планеты
+        color - Цвет планеты
+        """
+        self.m = m
+        self.x = x
+        self.y = y
+        self.Vx = Vx
+        self.Vy = Vy
+        self.R = R
+        self.color = color
