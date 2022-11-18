@@ -41,14 +41,14 @@ class Star:
     def __init__(self, m, x, y, Vx, Vy, R, color):
         """ Конструктор класса Star
         Args:
-        type - Признак объекта звезды
-        m - Масса звезды
-        x - Координата по оси **x**
-        y - Координата по оси **y**
-        Vx - Скорость по оси **x**
-        Vy - Скорость по оси **y**
-        R - Радиус звезды
-        color - Цвет звезды
+            type - Признак объекта звезды
+            m - Масса звезды
+            x - Координата по оси **x**
+            y - Координата по оси **y**
+            Vx - Скорость по оси **x**
+            Vy - Скорость по оси **y**
+            R - Радиус звезды
+            color - Цвет звезды
         """
         self.type = "star"
         self.m = m
@@ -99,14 +99,14 @@ class Planet:
     def __init__(self, m, x, y, Vx, Vy, R, color):
         """ Конструктор класса Star
         Args:
-        type - Признак объекта планеты
-        m - Масса планеты
-        x - Координата по оси **x**
-        y - Координата по оси **y**
-        Vx - Скорость по оси **x**
-        Vy - Скорость по оси **y**
-        R - Радиус планеты
-        color - Цвет планеты
+            type - Признак объекта планеты
+            m - Масса планеты
+            x - Координата по оси **x**
+            y - Координата по оси **y**
+            Vx - Скорость по оси **x**
+            Vy - Скорость по оси **y**
+            R - Радиус планеты
+            color - Цвет планеты
         """
         self.m = m
         self.x = x
@@ -115,3 +115,17 @@ class Planet:
         self.Vy = Vy
         self.R = R
         self.color = color
+        self.list_of_velocity = []
+        self.list_of_distance = []
+
+    def log_velocity(self):
+        self.list_of_velocity.append((self.Vx ** 2 + self.Vy ** 2) ** 0.5)
+
+    def log_distance(self, distance):
+        self.list_of_distance.append(distance)
+
+    def data_velocity(self):
+        return self.list_of_velocity
+
+    def data_distance(self):
+        return self.list_of_distance

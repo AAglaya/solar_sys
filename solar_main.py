@@ -26,6 +26,9 @@ time_scale = 1000.0
 space_objects = []
 """Список космических объектов."""
 
+list_of_time = []
+"""массив времени"""
+
 
 def execution(delta):
     """Функция исполнения -- выполняется циклически, вызывая обработку всех небесных тел,
@@ -50,6 +53,14 @@ def start_execution():
 def pause_execution():
     global perform_execution
     write_space_objects_data_to_file("models/stats.txt", space_objects)
+    for obj in space_objects:
+        if obj.obj.type != 'star':
+            draw_plots('V(t)', list_of_time[-len(obj.obj.list_of_velocity)::], obj.obj.list_of_velocity,
+                       'Время', 'Скорость')
+            draw_plots('Dist(t)', list_of_time[-len(obj.obj.list_of_distance)::], obj.obj.list_of_distance,
+                       'Время', 'Расстояние')
+            draw_plots('V(Dist)', obj.obj.list_of_distance, obj.obj.list_of_velocity,
+                       'Расстояние', 'Скорость')
     perform_execution = False
 
 
@@ -71,7 +82,7 @@ def open_file():
     global model_time
 
     model_time = 0.0
-    in_filename = "models/solar_system.txt"
+    in_filename = "models/one_satellite.txt"
     space_objects = read_space_objects_data_from_file(in_filename)
     max_distance = max([max(abs(obj.obj.x), abs(obj.obj.y)) for obj in space_objects])
     calculate_scale_factor(max_distance)
@@ -167,6 +178,11 @@ def main():
         last_time = cur_time
         drawer.update(space_objects, box)
         time.sleep(1.0 / 60)
+
+        for obj in space_objects:
+            if obj.obj.type != 'star':
+                obj.obj.log_velocity()
+        list_of_time.append(last_time)
 
     print('Modelling finished!')
 

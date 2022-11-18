@@ -2,6 +2,7 @@
 # license: GPLv3
 
 import pygame as pg
+from matplotlib import pyplot as plt
 
 """Модуль визуализации.
 Нигде, кроме этого модуля, не используются экранные координаты объектов.
@@ -59,6 +60,33 @@ def scale_y(y):
     """
     return window_height // 2 - int(y * scale_factor)
 
+
+def draw_plots(name, x_data, y_data, x_label, y_label):
+    """
+       Создаёт картинку с графиком
+       Args:
+           x_data - данные по оси x
+           y_data - данные по оси y
+           x_label - подпись оси x
+           y_label - подпись оси y
+       """
+    if name == 'V(t)':
+        title = 'Скорость от времени'
+    elif name == 'Dist(t)':
+        title = 'Расстояние от времени'
+    else:
+        title = 'Скорость от расстояния'
+    plt.figure()
+    plt.title(title)
+    plt.grid()
+    plt.minorticks_on()
+
+    plt.xlabel(x_label)
+    plt.ylabel(y_label)
+
+    plt.plot(x_data, y_data)
+    print(y_data)
+    plt.savefig(name + '.jpg')
 
 
 if __name__ == "__main__":
