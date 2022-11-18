@@ -52,6 +52,10 @@ def start_execution():
 
 def pause_execution():
     global perform_execution
+    perform_execution = False
+
+
+def get_data():
     write_space_objects_data_to_file("stats.txt", space_objects)
     for obj in space_objects:
         if obj.obj.type != 'star':
@@ -59,9 +63,8 @@ def pause_execution():
                        'Время', 'Скорость')
             draw_plots('Dist(t)', list_of_time[-len(obj.obj.list_of_distance)::], obj.obj.list_of_distance,
                        'Время', 'Расстояние')
-            draw_plots('V(Dist)', obj.obj.list_of_distance, obj.obj.list_of_velocity,
+            draw_plots('V(Dist)', obj.obj.list_of_distance, obj.obj.list_of_velocity[-len(obj.obj.list_of_distance)::],
                        'Расстояние', 'Скорость')
-    perform_execution = False
 
 
 def stop_execution():
@@ -115,6 +118,7 @@ def init_ui(screen):
     timer = thorpy.OneLineText("Seconds passed")
 
     button_load = thorpy.make_button(text="Load a file", func=open_file)
+    button_data = thorpy.make_button(text="Get data", func=get_data)
 
     box = thorpy.Box(elements=[
         slider,
@@ -122,6 +126,7 @@ def init_ui(screen):
         button_stop, 
         button_play, 
         button_load,
+        button_data,
         timer])
     reaction1 = thorpy.Reaction(reacts_to=thorpy.constants.THORPY_EVENT,
                                 reac_func=slider_reaction,
@@ -179,10 +184,11 @@ def main():
         drawer.update(space_objects, box)
         time.sleep(1.0 / 60)
 
-        for obj in space_objects:
-            if obj.obj.type != 'star':
-                obj.obj.log_velocity()
-        list_of_time.append(last_time)
+        if perform_execution:
+            for obj in space_objects:
+                if obj.obj.type != 'star':
+                    obj.obj.log_velocity()
+            list_of_time.append(last_time)
 
     print('Modelling finished!')
 
