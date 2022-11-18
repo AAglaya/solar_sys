@@ -85,7 +85,6 @@ def draw_plots(name, x_data, y_data, x_label, y_label):
     plt.ylabel(y_label)
 
     plt.plot(x_data, y_data)
-    print(y_data)
     plt.savefig(name + '.jpg')
 
 

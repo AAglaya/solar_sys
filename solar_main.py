@@ -52,7 +52,7 @@ def start_execution():
 
 def pause_execution():
     global perform_execution
-    write_space_objects_data_to_file("models/stats.txt", space_objects)
+    write_space_objects_data_to_file("stats.txt", space_objects)
     for obj in space_objects:
         if obj.obj.type != 'star':
             draw_plots('V(t)', list_of_time[-len(obj.obj.list_of_velocity)::], obj.obj.list_of_velocity,
