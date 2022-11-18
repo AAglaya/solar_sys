@@ -1,11 +1,9 @@
 # coding: utf-8
 # license: GPLv3
 
-import pygame as pg
-from solar_vis import *
-from solar_model import *
-from solar_input import *
-from solar_objects import *
+from source_code.solar_vis import *
+from source_code.solar_model import *
+from source_code.solar_input import *
 import thorpy
 import time
 import numpy as np
@@ -51,9 +49,8 @@ def start_execution():
 
 def pause_execution():
     global perform_execution
-    write_space_objects_data_to_file("stats.txt", space_objects)
+    write_space_objects_data_to_file("models/stats.txt", space_objects)
     perform_execution = False
-    write_space_objects_data_to_file('stats.txt', space_objects)
 
 
 def stop_execution():
@@ -74,7 +71,7 @@ def open_file():
     global model_time
 
     model_time = 0.0
-    in_filename = "solar_system.txt"
+    in_filename = "models/solar_system.txt"
     space_objects = read_space_objects_data_from_file(in_filename)
     max_distance = max([max(abs(obj.obj.x), abs(obj.obj.y)) for obj in space_objects])
     calculate_scale_factor(max_distance)
